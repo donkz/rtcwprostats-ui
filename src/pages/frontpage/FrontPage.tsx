@@ -92,14 +92,8 @@ const FrontPage: React.FC = () => {
             </Box>
             <Box textAlign="left" flex={1} ml={8}>
               <Box fontSize="lg" fontWeight="semibold" mb={2}>
-                  North America
-                  <a href="https://discord.gg/SSSZDGa" target="_blank" rel="noopener noreferrer" style={{ color: '#5865F2', textDecoration: 'underline', marginLeft: '8px' }}>
-                    Join Discord
-                  </a>
-              </Box>
-              <Box fontSize="lg" fontWeight="semibold" mb={2}>
-                  Europe
-                  <a href="https://discordapp.com/invite/pv6kfdq" target="_blank" rel="noopener noreferrer" style={{ color: '#5865F2', textDecoration: 'underline', marginLeft: '8px' }}>
+                  RTCW Pro (main)
+                  <a href="https://discord.gg/vfWBwzTSBE" target="_blank" rel="noopener noreferrer" style={{ color: '#5865F2', textDecoration: 'underline', marginLeft: '8px' }}>
                     Join Discord
                   </a>
               </Box>
@@ -107,6 +101,10 @@ const FrontPage: React.FC = () => {
               <a href="https://discord.gg/swJemVt" target="_blank" rel="noopener noreferrer" style={{ color: '#5865F2', textDecoration: 'underline', marginLeft: '8px' }}>
                     Join Discord
                   </a>
+              </Box>
+              <Box fontSize="lg" fontWeight="semibold" mb={2}>
+                  RTCWMP (developers)
+                  (ask to join)
               </Box>
               
             </Box>
