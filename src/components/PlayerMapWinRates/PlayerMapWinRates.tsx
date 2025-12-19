@@ -1,70 +1,84 @@
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
+import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
 import { Box } from "@chakra-ui/react";
 import { BarDatum, ResponsiveBar} from "@nivo/bar";
 import { BasicTooltip } from "@nivo/tooltip";
 import { theme } from "./PlayerMapWinRatesTheme";
-//import { IPlayerMap } from "../../api/types";
+import { IPlayerMapRate } from "../../api/types";
+import { StatsApi } from "../../api";
 
 
 export const PlayerMapWinRates: React.FC<{
-  data: any
-}> = ({ data }) => {
+  gametype: string;
+  region: string;
+  playerId: string;
+}> = ({ playerId, region, gametype }) => {
   const history = useHistory();
 
-  // function convertToNivoHeatmap(gameData: IMapsAllItem[]): HeatmapData[] {
-  //   let heatMapData: any = gameData.map((player) => ({
-  //     id: player.real_name + "/" + player.id.substring(0,2),
-  //     data: player.data.map((mapStats) => ({
-  //       x: mapStats.map,
-  //       y: parseFloat((mapStats.wins / mapStats.games).toFixed(2)),
-  //       wins: mapStats.wins,
-  //       games: mapStats.games
-  //     }))
-  //   }));
-  //   return heatMapData.sort((a: any, b: any) => a.id.localeCompare(b.id));
-  // }
+    const { data, isLoading, refetch } = useQuery<IPlayerMapRate[]>(
+      "mapwinrates",
+      () => StatsApi.Maps.GetPlayerMapRates(playerId, region, gametype)
+    );
+  
+    useEffect(() => {
+      refetch();
+    }, [playerId, region, gametype]);
+
+  function convertToNivoBarDatum(mapData: IPlayerMapRate[]): BarDatum[] {
+    let playerMapData: BarDatum[] = [];
+    mapData.forEach((playerMapRate: IPlayerMapRate) => {
+      playerMapRate.games === 0 && (playerMapRate.games = 1); // to avoid division by zero
+      playerMapData.push({
+        "map": playerMapRate.map + ` (${playerMapRate.games})`,
+        "wins": playerMapRate.wins/playerMapRate.games,
+        "draws": playerMapRate.draws/playerMapRate.games,
+        "losses": playerMapRate.losses/playerMapRate.games
+      });
+    });
+    return playerMapData;
+  }
 
   const nivoData = useMemo(() => {
     if (!data || "error" in data) {
       return null;
     }
-    //let mapSeries: any = convertToNivoHeatmap(data);
-    let mapSeries: BarDatum[] = [
-      {
-        "map": "mp_ice",
-        "wins": 20,
-        "draws": 60,
-        "losses": 20
-      },
-      {
-        "map": "mp_beach",
-        "wins": 60,
-        "draws": 10,
-        "losses": 30
-      }];
+    let mapSeries: any = convertToNivoBarDatum(data);
     return mapSeries;
   }, [data]);
 
-  //console.log(nivoData);
+  let barAreaHeight = 1000;
+  if (nivoData) {
+    barAreaHeight = Math.min(barAreaHeight, nivoData.length * 60);
+    console.log(nivoData.length);
+    console.log(barAreaHeight);
+  }
+
+
 
   return (
     <>
       {data && "error" in data && <>N/A</>}
       {data && nivoData && (
-        <Box h={500}>
+        <Box h={barAreaHeight}>
             <ResponsiveBar
               data={nivoData}
               theme={theme}
               indexBy="map"
+              keys={["wins", "draws", "losses"]}
               layout="horizontal"
-              padding={0}
+              padding={0.1}
+              innerPadding={1}
+              colorBy="id"
+              colors={{ scheme: 'accent' }}
+              enableLabel={true}
               labelSkipWidth={12}
               labelSkipHeight={12}
+              axisBottom={null}
               legends={[
                   {
                       dataFrom: 'keys',
-                      anchor: 'bottom-right',
+                      anchor: 'right',
                       direction: 'column',
                       translateX: 120,
                       itemsSpacing: 3,
@@ -72,9 +86,8 @@ export const PlayerMapWinRates: React.FC<{
                       itemHeight: 16
                   }
               ]}
-              axisBottom={{ legend: 'map (indexBy)', legendOffset: 32 }}
-              axisLeft={{ legend: 'records', legendOffset: -40 }}
-              margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
+              margin={{ top: 0, right: 120, bottom: 50, left: 150 }}
+              valueFormat=" =-.0%"
           />
         </Box>
       )}

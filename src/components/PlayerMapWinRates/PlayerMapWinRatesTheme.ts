@@ -29,5 +29,12 @@ export const theme = {
         padding: "5px 9px"
       }
     }
+    ,
+    legends: {
+      text: {
+        fill: "#fff",
+        fontSize: "12px"
+      }
+    }
   };
   

@@ -133,9 +133,9 @@ const PlayerStats: React.FC<{
       </Box>
       <Box w="100%">
         <Heading as="h4" size="md" mt="20px" mb="10px">
-          Map Stats (under constructon)
+          Map Win/Draw/Loss Rates
         </Heading>
-        <PlayerMapWinRates data={[]}/>
+        <PlayerMapWinRates playerId={playerId} region={region} gametype={gametype}/>
       </Box>
     </Box>
   );

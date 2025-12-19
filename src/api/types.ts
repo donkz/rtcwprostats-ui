@@ -36,6 +36,15 @@ export interface IMapStats {
   wins: number;
 }
 
+export interface IPlayerMapRate {
+  map: string;
+  wins: number;
+  draws: number;
+  losses: number;
+  total_duration: number;
+  games: number;
+}
+
 export interface IMapsAllItem {
   id: string;
   real_name: string;
