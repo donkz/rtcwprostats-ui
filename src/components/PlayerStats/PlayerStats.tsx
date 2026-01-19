@@ -129,7 +129,11 @@ const PlayerStats: React.FC<{
             <StatNumber>{damagePerGame}</StatNumber>
           </Stat>
           <Stat>
-            <StatLabel>Time/Game</StatLabel>
+            <StatLabel>Gibs/Game</StatLabel>
+            <StatNumber>{gibsPerGame}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Avg Time Played %/Game</StatLabel>
             <StatNumber>{timePerGame}</StatNumber>
           </Stat>
           <Stat>
@@ -140,18 +144,14 @@ const PlayerStats: React.FC<{
             <StatLabel>Crouched %</StatLabel>
             <StatNumber>{timeCrouchedPercentage}</StatNumber>
           </Stat>
-          <Stat>
+          {/* <Stat>
             <StatLabel>Distance out of spawn</StatLabel>
             <StatNumber>{distanceTravelledSpawn}</StatNumber>
-          </Stat>
-          <Stat>
+          </Stat> */}
+          {/* <Stat>
             <StatLabel>Distance per Game</StatLabel>
             <StatNumber>{distanceTravelled}</StatNumber>
-          </Stat>
-          <Stat>
-            <StatLabel>Gibs/Game</StatLabel>
-            <StatNumber>{gibsPerGame}</StatNumber>
-          </Stat>
+          </Stat> */}
         </SimpleGrid>
       </Box>
       <Box w="100%">
