@@ -213,6 +213,7 @@ export const STAT_KEYS: Record<string, string> = {
   damagereceived: "Damage Received",
   shots: "Shots Fired",
   obj_destroyed: "Objective Destroyed",
+  time_played: "Time Played",
 };
 
 export const AWARD_DESCRIPTIONS: Record<string, string> = {
@@ -234,7 +235,12 @@ export const AWARD_DESCRIPTIONS: Record<string, string> = {
   "Melon Farmer": "Most headshots",
   "On a Mission": "Objective taken + destroyed + captured*2",
   "Standard bearer": "Flag captures and returns",
-  "Bounty Hunter": "Objective returns"
+  "Bounty Hunter": "Objective returns",
+  "Weary Traveler": "Most distance covered",
+  "Pisa incarnate": "Most time spent leaning",
+  "Slav squat": "Most time spent crouching",
+  "Gollum": "Most time holding objective",
+  "Press W": "Least distance travelled in invincibility"
 };
 
 export const SET_REGION = "SET_REGION";

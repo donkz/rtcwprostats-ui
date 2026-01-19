@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { Link as reactLink } from "react-router-dom";
+import { unitsToMeters } from "../../util";
 import {
   Box,
   Heading,
@@ -45,17 +46,17 @@ const PlayerStats: React.FC<{
 
   const headshotRatio = aggStatsRegion["headshots"]
     ? `${((aggStatsRegion["headshots"] / aggStatsRegion["hits"]) * 100).toFixed(
-        2
-      )}%`
+      2
+    )}%`
     : "N/A";
 
   const accuracy = accRegion ? `${accRegion}%` : "N/A";
 
   const objectivePerGame = aggStatsRegion["obj_captured"]
     ? `${(
-        (aggStatsRegion["obj_captured"] / aggStatsRegion["games"]) *
-        100
-      ).toFixed(2)}%`
+      (aggStatsRegion["obj_captured"] / aggStatsRegion["games"]) *
+      100
+    ).toFixed(2)}%`
     : "N/A";
 
   const damagePerGame = aggStatsRegion["damagegiven"]
@@ -64,6 +65,26 @@ const PlayerStats: React.FC<{
 
   const gibsPerGame = aggStatsRegion["gibs"]
     ? (aggStatsRegion["gibs"] / aggStatsRegion["games"]).toFixed(2)
+    : "N/A";
+
+  const timePerGame = aggStatsRegion["time_played"]
+    ? `${(aggStatsRegion["time_played"] / (aggStatsRegion["time_axis"] + aggStatsRegion["time_allies"]) * 100).toFixed(1)}%`
+    : "N/A";
+
+  const timeLeaningPercentage = aggStatsRegion["time_leaning"] && aggStatsRegion["time_played"]
+    ? `${((aggStatsRegion["time_leaning"] / aggStatsRegion["time_played"]) * 100).toFixed(1)}%`
+    : "N/A";
+
+  const timeCrouchedPercentage = aggStatsRegion["time_crouched"] && aggStatsRegion["time_played"]
+    ? `${((aggStatsRegion["time_crouched"] / aggStatsRegion["time_played"]) * 100).toFixed(1)}%`
+    : "N/A";
+
+  const distanceTravelledSpawn = aggStatsRegion["distance_travelled_spawn"] && aggStatsRegion["games"]
+    ? `${unitsToMeters(aggStatsRegion["distance_travelled_spawn"] / 1000 / aggStatsRegion["games"])} m`
+    : "N/A";
+
+  const distanceTravelled = aggStatsRegion["distance_travelled"] && aggStatsRegion["games"]
+    ? `${unitsToMeters(aggStatsRegion["distance_travelled"] / 1000 / aggStatsRegion["games"])} m`
     : "N/A";
 
   // TODO: Need to figure out how/what to actually display
@@ -108,6 +129,26 @@ const PlayerStats: React.FC<{
             <StatNumber>{damagePerGame}</StatNumber>
           </Stat>
           <Stat>
+            <StatLabel>Time/Game</StatLabel>
+            <StatNumber>{timePerGame}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Leaning %</StatLabel>
+            <StatNumber>{timeLeaningPercentage}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Crouched %</StatLabel>
+            <StatNumber>{timeCrouchedPercentage}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Distance out of spawn</StatLabel>
+            <StatNumber>{distanceTravelledSpawn}</StatNumber>
+          </Stat>
+          <Stat>
+            <StatLabel>Distance per Game</StatLabel>
+            <StatNumber>{distanceTravelled}</StatNumber>
+          </Stat>
+          <Stat>
             <StatLabel>Gibs/Game</StatLabel>
             <StatNumber>{gibsPerGame}</StatNumber>
           </Stat>
@@ -115,15 +156,15 @@ const PlayerStats: React.FC<{
       </Box>
       <Box w="100%">
         <Heading as="h4" size="md" mt="20px" mb="10px">
-            Achievements
+          Achievements
         </Heading>
-        <Achievements achievements={data.achievements}/>
+        <Achievements achievements={data.achievements} />
       </Box>
       <Box w="100%">
         <Heading as="h4" size="md" mt="20px" mb="10px">
           Elo Progression
         </Heading>
-        <EloProgress playerId={playerId} region={region} gametype={gametype}/>
+        <EloProgress playerId={playerId} region={region} gametype={gametype} />
       </Box>
       <Box w="100%">
         <Heading as="h4" size="md" mt="20px" mb="10px">
@@ -135,7 +176,7 @@ const PlayerStats: React.FC<{
         <Heading as="h4" size="md" mt="20px" mb="10px">
           Map Win/Draw/Loss Rates
         </Heading>
-        <PlayerMapWinRates playerId={playerId} region={region} gametype={gametype}/>
+        <PlayerMapWinRates playerId={playerId} region={region} gametype={gametype} />
       </Box>
     </Box>
   );

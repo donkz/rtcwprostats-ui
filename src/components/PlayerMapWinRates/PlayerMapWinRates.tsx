@@ -50,10 +50,7 @@ export const PlayerMapWinRates: React.FC<{
   let barAreaHeight = 1000;
   if (nivoData) {
     barAreaHeight = Math.min(barAreaHeight, nivoData.length * 60);
-    console.log(nivoData.length);
-    console.log(barAreaHeight);
   }
-
 
 
   return (

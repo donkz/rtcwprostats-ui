@@ -62,11 +62,13 @@ export const AwardsDisplay: React.FC<{ data: IAwardSummary }> = ({ data }) => {
                   display="inline"
                   fontSize="14px"
                 >
-                  <RTCWColorText coloredString={player}/>:{" "}
+                  <RTCWColorText coloredString={player} />:{" "}
                   <Box as="span" color="white" fontWeight="normal">
                     {award === "Longest Kill" ? `${unitsToMeters(value)} m`
-                      : award === "Sharpshooter" ? `${value.toLocaleString(undefined,{style: 'percent', minimumFractionDigits:1})}`
-                        : value}
+                      : award === "Sharpshooter" ? `${value.toLocaleString(undefined, { style: 'percent', minimumFractionDigits: 1 })}`
+                        : award === "Press W" || award === "Weary Traveler" ? `${unitsToMeters(value)} m`
+                          : award === "Pisa incarnate" || award === "Gollum" || award === "Slav squat" ? `${(value / 1000).toFixed(0)} s`
+                            : value}
                   </Box>
                 </Text>
               </Box>

@@ -5,7 +5,7 @@ import { IStatsResponse, IPlayerStatsDictionary, IPlayerStats, IElos } from "../
 1. Create a function like calc_something_values(players)
        return shoud be a dictionary of {alias:value, alias2:value2}
 2. Plug the returned dictionary into the metrics
-       metrics["Something"] =  calc_terminator_values(players);
+       metrics["Something"] =  calc_something_values(players);
 */
 
 function convert_statsall_to_players(stats: IStatsResponse, elos: IElos) {
@@ -133,7 +133,6 @@ function smallest_values(metrics: { [name: string]: any }) {
 
     for (const [metric, dict_] of Object.entries(metrics) as any) {
         max_values[metric] = Object.values(dict_).reduce((a, b) => Math.min(a as number, b as number));
-        // console.log(metric + " top value is " + Object.values(dict_).reduce((a, b) => Math.max(a, b)))
       }
     return max_values
 }
@@ -169,6 +168,12 @@ export const deriveAwardsfromStats = (stats: IStatsResponse, elos: IElos) => {
     metrics["Standard bearer"] =  calc_flag_values(players);
     metrics["On a Mission"] = calc_objectives_values(players);
     metrics["Bounty Hunter"] =  calc_single_metric(players, "obj_returned");
+    // metrics["Weary Traveler"] =  calc_single_metric(players, "distance_travelled");
+    metrics["Pisa incarnate"] =  calc_single_metric(players, "time_leaning");
+    metrics["Slav squat"] =  calc_single_metric(players, "time_crouched");
+    metrics["Gollum"] =  calc_single_metric(players, "time_objheld");
+    
+
     
 
     let maxValues = biggest_values(metrics);
@@ -176,6 +181,7 @@ export const deriveAwardsfromStats = (stats: IStatsResponse, elos: IElos) => {
 
     //smaller - better
     metrics["Frag Stealer"] =  calc_frag_stealer_values(players);
+    // metrics["Press W"] =  calc_single_metric(players, "distance_travelled_spawn");
 
     let minValues = smallest_values(metrics);
     let awardList_min = keys_of_values(metrics, minValues)

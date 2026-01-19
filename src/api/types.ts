@@ -28,6 +28,14 @@ interface ICategories {
   obj_protectflag: number;
   obj_killcarrier: number;
   obj_checkpoint: number;
+  time_played: number;
+  time_axis: number;
+  time_allies: number;
+  time_crouched: number;
+  time_leaning: number;
+  time_objheld: number;
+  distance_travelled_spawn: number;
+  distance_travelled: number;
 }
 
 export interface IMapStats {
@@ -131,6 +139,14 @@ interface IAggStats {
   obj_protectflag: number;
   obj_killcarrier: number;
   obj_checkpoint: number;
+  time_played: number;
+  time_axis: number;
+  time_allies: number;
+  time_crouched: number;
+  time_leaning: number;
+  time_objheld: number;
+  distance_travelled_spawn: number;
+  distance_travelled: number;
 }
 
 export interface IRecentPlayer {
