@@ -20,6 +20,7 @@ import { ClientStats } from "./pages/clientstats/ClientStats";
 import { InformationPage } from "./pages/info/Information";
 import { MapsPage } from "./pages/maps/Maps";
 import OnDemand from "./pages/ondemand/OnDemand";
+import { AdminPage } from "./pages/admin";
 import RegionTypeState from "./context/RegionTypeState";
 import FrontPage from "./pages/frontpage/FrontPage";
 
@@ -76,6 +77,7 @@ export const App: React.FC = () => {
                   <Route exact path="/info" component={InformationPage} />
                   <Route exact path="/clientstats" component={ClientStats} />
                   <Route exact path="/serverondemand" component={OnDemand} />
+                  <Route path="/admin" component={AdminPage} />
                 </Switch>
               </Box>
             </Stack>

@@ -46,8 +46,6 @@ const HeatMap: React.FC<{
     return mapSeries;
   }, [data]);
 
-  //console.log(nivoData);
-
   interface HeatMapDatum {
     x: string;
     y: number;

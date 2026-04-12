@@ -1,0 +1,1 @@
+export { AdminErrorBoundary, withAdminErrorBoundary } from './AdminErrorBoundary';

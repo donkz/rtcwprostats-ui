@@ -59,8 +59,6 @@ const FrontPage: React.FC = () => {
     { enabled: shouldLoadStats }
   );
 
-  console.log(dataMatchesRecent);
-
   const handleLoadStats = () => {
     setShouldLoadStats(true);
   };

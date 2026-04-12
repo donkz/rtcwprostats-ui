@@ -10,7 +10,6 @@ import { IStatsResponse, IPlayerStatsDictionary, IPlayerStats, IElos } from "../
 
 function convert_statsall_to_players(stats: IStatsResponse, elos: IElos) {
     let players: { [name: string]: any } = {};
-    // console.log(stats);
     stats.statsall.map((player: IPlayerStatsDictionary) => {
         //let alias = Object.values(player)[0].alias;
         let alias = Object.values(player)[0].alias_colored;
@@ -123,7 +122,6 @@ function biggest_values(metrics: { [name: string]: any }) {
 
     for (const [metric, dict_] of Object.entries(metrics) as any) {
         max_values[metric] = Object.values(dict_).reduce((a, b) => Math.max(a as number, b as number));
-        // console.log(metric + " top value is " + Object.values(dict_).reduce((a, b) => Math.max(a, b)))
       }
     return max_values
 }

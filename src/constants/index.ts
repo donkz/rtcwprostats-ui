@@ -31,6 +31,7 @@ import {
 import { MdViewList } from "react-icons/md";
 import { VscAccount, VscServer } from "react-icons/vsc";
 import { MdMap, MdPlayArrow } from "react-icons/md";
+import { RiAdminLine } from "react-icons/ri";
 
 export const COLORS = {
   background: "#12161D",
@@ -164,6 +165,7 @@ export const NAV_LINKS = [
   { id: "info", name: "Info", component: IoIosInformationCircleOutline },
   { id: "clientstats", name: "Client Stats", component: GoFileBinary },
   { id: "serverondemand", name: "On Demand", component: MdPlayArrow },
+  { id: "admin", name: "Admin", component: RiAdminLine },
 ];
 
 export const CLASS_ICONS: Record<string, any> = {
