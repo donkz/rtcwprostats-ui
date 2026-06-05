@@ -20,7 +20,7 @@ import facebookSrc from "../assets/Facebook_Logo_Primary.png";
 import internetSrc from "../assets/network-internet-web-svgrepo-com.svg";
 
 import { AiOutlineTrophy } from "react-icons/ai";
-import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3, GiMineExplosion, GiCondorEmblem, GiSkullWithSyringe, GiGearHammer, GiStarSkull } from "react-icons/gi";
+import { GiRocket, GiMedicalPack, GiCrosshair, GiRank3, GiMineExplosion, GiCondorEmblem, GiSkullWithSyringe, GiGearHammer, GiStarSkull, GiCrystalBall } from "react-icons/gi";
 import { GoFileBinary, GoPulse } from "react-icons/go";
 import { FaBinoculars, FaMountain, FaBell } from "react-icons/fa";
 import { BsQuestion, BsBullseye  } from "react-icons/bs";
@@ -165,6 +165,7 @@ export const NAV_LINKS = [
   { id: "info", name: "Info", component: IoIosInformationCircleOutline },
   { id: "clientstats", name: "Client Stats", component: GoFileBinary },
   { id: "serverondemand", name: "On Demand", component: MdPlayArrow },
+  { id: "predictions", name: "Predictions", component: GiCrystalBall },
   { id: "admin", name: "Admin", component: RiAdminLine },
 ];
 

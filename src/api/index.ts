@@ -9,6 +9,7 @@ import { createEventsApi } from "./events";
 import { createSeasonsApi } from "./seasons";
 import { createMapsApi } from "./maps";
 import { createAdminApi } from "./admin";
+import { createPredictionsApi } from "./predictions";
 
 
 const createStatsApi = () => {
@@ -23,7 +24,8 @@ const createStatsApi = () => {
     Events: createEventsApi(agent),
     Seasons: createSeasonsApi(agent),
     Maps: createMapsApi(agent),
-    Admin: createAdminApi(agent)
+    Admin: createAdminApi(agent),
+    Predictions: createPredictionsApi(agent),
   };
 };
 
